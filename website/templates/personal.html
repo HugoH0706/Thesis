@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Flask Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #205a12;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            background-color: #132513;
+            padding: 10px; 
+            margin: 0;
+        }
+
+        .unique-h2{
+            margin-top: 50px;
+            text-align: left;
+            color: #205a12;
+        }
+        h2 {
+            margin-top: 10px;
+            text-align: left;
+            color: #205a12;
+        }
+        p {
+            text-align: left;
+        }
+
+        .logo {
+            width: 175px;
+            margin-right: 10px;
+            background-color: transparent;
+            padding: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: orange;
+            color: black;
+            cursor: pointer;
+        }
+
+        .item {
+            margin-top: 20px;
+        }
+        .plot-info {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .plot-container {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            border-color: #205a12;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+            background-color: #132513;
+            padding: 10px;
+        }
+
+        .nav-left, .nav-center, .nav-right {
+            display: flex;
+            align-items: center; 
+        }
+
+        .nav-center h1 {
+            color: #fff;
+        }
+
+        .nav-right ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-right ul li {
+            display: inline;
+            margin-left: 20px; 
+        }
+
+        .nav-right ul li a {
+            color: #fff; 
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="https://jeleefstijlalsmedicijn.nl/">
+                <img class="logo" src="{{ url_for('static', filename='images/jlam.png') }}" alt="Logo">
+            </a>
+        </div>
+        <div class="nav-center">
+            <h1>Zaterdag Meten en Weten(ZWeM) Resultaten</h1>
+        </div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="input-container">
+            <form method="post" action="/personal">
+                <!-- First name and last name input fields -->
+                <h2> Persoonlijke Waardes </h2>
+                <p>Als u uw persoonlijke grafieken wilt bekijken, vul dan uw voor- en achternaam samen met het wachtwoord in en klik op 'Genereer Mijn Persoonlijke Grafieken!'.</p>
+                <label for="first_name">Voornaam:</label>
+                <input type="text" id="first_name" name="first_name" required>
+                <label for="last_name">Achternaam:</label>
+                <input type="text" id="last_name" name="last_name" required>
+                <label for="password">Wachtwoord:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Genereer Mijn Persoonlijke Grafieken!</button>
+            </form>
+        </div>
+
+        <div class="item">
+            {% if first_name and last_name is not none %}
+            <div class="plot-info">
+                <h2 style="margin-bottom: 10px;">Meetvariabelen Grafieken van {{ first_name}} {{ last_name }}: </h2>
+            </div>
+            {% endif %}
+            {% if img_data_new_1 is not none %}
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ img_data_new_1 }}" alt="Weight Plot for {{ first_name }} {{ last_name }}">
+            </div>
+            {% endif %}
+            {% if img_data_new_1 is not none %}
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ img_data_new_2 }}" alt="Waist Plot for {{ first_name }} {{ last_name }}">
+            </div>
+            {% endif %}
+            {% if img_data_new_1 is not none %}
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ img_data_new_3 }}" alt="Glucose Plot for {{ first_name }} {{ last_name }}">
+            </div>
+            {% endif %}
+            {% if img_data_new_1 is not none %}
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ img_data_new_4 }}" alt="HbA1c Plot for {{ first_name }} {{ last_name }}">
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

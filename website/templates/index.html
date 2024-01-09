@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Flask Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #205a12;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            background-color: #132513;
+            padding: 10px; 
+            margin: 0;
+        }
+
+        .unique-h2{
+            margin-top: 50px;
+            text-align: left;
+            color: #205a12;
+        }
+        h2 {
+            margin-top: 10px;
+            text-align: left;
+            color: #205a12;
+        }
+        p {
+            text-align: left;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        .logo {
+            width: 175px;
+            margin-right: 10px;
+            background-color: transparent;
+            padding: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .intro-text {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .item {
+            margin-top: 20px;
+        }
+        .plot-info {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .plot-container {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            border-color: #205a12;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+            background-color: #132513;
+            padding: 10px;
+        }
+
+        .nav-left, .nav-center, .nav-right {
+            display: flex;
+            align-items: center; 
+        }
+
+        .nav-center h1 {
+            color: #fff;
+        }
+
+        .nav-right ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-right ul li {
+            display: inline;
+            margin-left: 20px; 
+        }
+
+        .nav-right ul li a {
+            color: #fff; 
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="https://jeleefstijlalsmedicijn.nl/">
+                <img class="logo" src="{{ url_for('static', filename='images/jlam.png') }}" alt="Logo">
+            </a>
+        </div>
+        <div class="nav-center">
+            <h1>Zaterdag Meten en Weten(ZWeM) Resultaten</h1>
+        </div>
+        <div class="nav-right">
+            <ul>
+                <li><a href="{{ url_for('personal') }}">Persoonlijke Grafieken</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="intro-text">
+            <h2> Gemiddelde Waardes </h2>
+            <p>In de supportgroep Diabetes2Doorbreken hebben leden de mogelijkheid om elke zaterdag hun gewicht en afmetingen te meten. 
+                De leden registreren hun gewicht, buikomvang, nuchtere glucose en indien mogelijk het HbA1c-niveau. 
+                Aangezien veel leden al geruime tijd deelnemen aan de ZWeM-activiteit, hebben we besloten om de resultaten van de leden te onderzoeken.
+                De onderstaande vier grafieken tonen het gemiddelde verschil tussen de eerste meting tot 30 maanden na de eerste meting, van de volgende meetvariabelen:
+            </p>
+            <ul>
+                <li>Gewicht</li>
+                <li>Buikomvang</li>
+                <li>Nuchtere glucose</li>
+                <li>HbA1c</li>
+            </ul>
+        </div>
+        <!-- Four Graphs Displaying Average Weight, Waist, Glucose and HbA1c -->
+        <div class="item">
+            <div class="text-container">
+            </div>
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ img_data_1 }}" alt="Plot 1">
+            </div>
+        </div>
+        
+        <div class="item">
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ img_data_2 }}" alt="Plot 2">
+            </div>
+            <div class="text-container">
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="text-container">
+            </div>
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ img_data_3 }}" alt="Plot 3">
+            </div>
+        </div>
+        
+        <div class="item">
+            <div class="plot-container">
+                <img src="data:image/png;base64,{{ img_data_4 }}" alt="Plot 4">
+            </div>
+            <div class="text-container">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
