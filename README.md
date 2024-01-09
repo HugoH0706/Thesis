@@ -18,3 +18,4 @@
 * Website:
     * Uses html+css templates for two pages
     * app.py uses functions from the python files to display the average difference of HbA1c, weight, glucose and waist circumference from 2019 - present
+    * Website has been published using a microsoft server, however is kept private by request of Je Leefstijl Als Medicijn
